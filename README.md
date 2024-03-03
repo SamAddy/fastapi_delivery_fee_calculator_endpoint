@@ -107,7 +107,7 @@ Example:
 ## Project Structure
 
 ```structure
-Samuel_Addison-engineering-internship-2024
+delivery_fee_calculator
 │
 │   delivery_fee_calculator/
 │   │
@@ -125,12 +125,10 @@ Samuel_Addison-engineering-internship-2024
 │   │   ├── test_fee_calculator.py
 │   │   ├── test_main.py
 │   
-├── example_ui.png
 ├── README.md
 ├── redo_screenshot.png
 ├── requirements.txt
 ├── swagger_ui_screenshot
-├── TASK.md
-├── yuhos.png
+
 
 ```
