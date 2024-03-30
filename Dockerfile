@@ -1,5 +1,6 @@
-# Stage 1: Build environment
-FROM python:3.11 AS builder
+# syntax=docker/dockerfile:1
+
+FROM python:3.11
 
 WORKDIR /code
 
@@ -9,13 +10,6 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 COPY . .
 
-# Stage 2: Production environment
-FROM python:3.11-slim
-
-WORKDIR /app
-
-COPY --from=builder /code /app
-
 EXPOSE 3100
 
-CMD ["gunicorn", "main:app"]
+CMD ["gunicorn", "delivery_fee_calculator.main:app"]
