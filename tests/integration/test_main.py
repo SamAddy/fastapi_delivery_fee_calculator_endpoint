@@ -4,7 +4,7 @@ from fastapi.testclient import TestClient
 
 from delivery_fee_calculator.fee_calculator import CalculateDeliveryFee
 from delivery_fee_calculator.main import app
-from tests.test_data import normal_cart, invalid_cart
+from tests.test_data import normal_cart, invalid_cart, maximum_fee_limit_cart
 
 client = TestClient(app)
 
@@ -36,3 +36,9 @@ def test_calculate_delivery_fee_with_invalid_data():
         assert "msg" in error_entry
 
     calculator.calculate_delivery_fee.assert_not_called()
+
+
+def test_maximum_delivery_fee():
+    response = client.post("/fees", json=maximum_fee_limit_cart)
+    assert response.status_code == 201
+    assert response.json() == {"delivery_fee": 1500}
