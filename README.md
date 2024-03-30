@@ -47,9 +47,9 @@ distance.
 
 2. API Documentation:
     - Swagger UI: http://localhost:8000/docs
-      ![Swagger_UI](swagger_ui_screenshot.png)
+      ![Swagger_UI](static/images/swagger_ui_screenshot.png)
     - ReDoc: http://localhost:8000/redoc
-      ![Redoc](redoc_screenshot.png)
+      ![Redoc](static/images/redoc_screenshot.png)
 
 3. The endpoint can also be tested using `requests` in CLI.
     ```bash
