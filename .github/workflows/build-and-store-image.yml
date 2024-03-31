@@ -23,5 +23,8 @@ jobs:
           push: true
           tags: samaddy/feecalculator:latest
 
+      - name: Run Tests in Docker
+        run: docker run feecalculator pytest tests
+
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
