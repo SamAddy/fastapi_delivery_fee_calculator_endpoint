@@ -1,6 +1,6 @@
 name: Delivery fee calculator Pipeline
 
-run-name: ${{ github.actor }} is building
+#run-name: ${{ github.actor }} is building
 
 on:
   push:
@@ -17,9 +17,9 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-#
-#      - name: Build Docker Image
-#        run: docker buildx build --platform linux/amd64 -t delivery-fee-calculator-api .
-#
-#      - name: Run Tests in Docker
-#        run: docker run delivery-fee-calculator-api pytest tests
+
+      - name: Build Docker Image
+        run: docker buildx build --platform linux/amd64 -t delivery-fee-calculator-api .
+
+      - name: Run Tests in Docker
+        run: docker run delivery-fee-calculator-api pytest tests
