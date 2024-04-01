@@ -1,6 +1,4 @@
-name: Delivery fee calculator Pipeline
-
-#run-name: ${{ github.actor }} is building
+name: Build and push Docker image pipeline
 
 on:
   push:
@@ -34,11 +32,12 @@ jobs:
           file: Dockerfile
           push: true
           tags: samaddy/deliveryfeecalculator:latest
-          cache-from: type:local,src=/tmp/.buildx-cache
+          cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
-      - name: Image digest
-        uses: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Display Image Digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+
 
       #      - name: Set up Python
       #        uses: actions/setup-python@v5
