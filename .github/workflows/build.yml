@@ -43,18 +43,3 @@ jobs:
 
       - name: Display Image Digest
         run: echo ${{ steps.docker_build.outputs.digest }}
-
-
-      #      - name: Set up Python
-      #        uses: actions/setup-python@v5
-      #        with:
-      #          python-version: '3.x'
-      #
-      #      - name: Install dependencies
-      #        run: pip install --no-cache-dir --upgrade -r requirements.txt
-      
-      #      - name: Set up Docker Buildx
-      #        uses: docker/setup-buildx-action@v3
-      #
-      #      - name: Build Docker Image
-      #        run: docker buildx build --platform linux/amd64 -t delivery-fee-calculator-api .
