@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build_and_test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,18 +16,15 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
+      - name: Run Tests in Docker
+        run: docker run feecalculator pytest tests
+        
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v5
         with:
           push: true
           tags: samaddy/feecalculator:latest
-
-      - name: Pull Docker image
-        run: docker pull samaddy/feecalculator:latest
-
-      - name: Run Tests in Docker
-        run: docker run feecalculator pytest tests
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
