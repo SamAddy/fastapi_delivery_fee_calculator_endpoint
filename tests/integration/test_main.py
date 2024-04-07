@@ -11,20 +11,21 @@ client = TestClient(app)
 calculator = CalculateDeliveryFee()
 
 
+def test_index():
+    response = client.get("/")
+    assert response.status_code == 200
+    assert b"Welcome to API Playground" in response.content
+
+
 def test_calculate_delivery_fee_endpoint():
-    calculator.calculate_delivery_fee = MagicMock(return_value=710)
-
     response = client.post("/fees", json=normal_cart)
-
     assert response.status_code == 201
     assert response.json() == {"delivery_fee": 710}
 
 
 def test_calculate_delivery_fee_with_invalid_data():
     calculator.calculate_delivery_fee = MagicMock()
-
     response = client.post("/fees", json=invalid_cart)
-
     assert response.status_code == 422
     assert "detail" in response.json()
 
