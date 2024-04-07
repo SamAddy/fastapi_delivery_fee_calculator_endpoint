@@ -1,10 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SamAddy Play Ground</title>
+    <link rel="shortcut icon" href="{{ url_for('static', path='/favicon.ico') }}">
+
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <link rel="stylesheet" href="../static/css/styles.css">
 </head>
 <body>
+<nav class="navbar">
+    <div class="container">
+        <div id="navMenu" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="/">
+                    Home
+                </a>
+                <a class="navbar-item" href="/docs">
+                    Documentation
+                </a>
+            </div>
 
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-dark"
+                           href="https://github.com/SamAddy/fastapi_delivery_fee_calculator_endpoint" target="_blank">
+                            Github
+                        </a>
+                        <a class="button is-link">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="hero is-primary is-halfheight custom-hero">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Welcome to API Playground
+            </h1>
+            <p class="subtitle">
+                Explore and interact with our API endpoints
+            </p>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <h2 class="title is-2">Getting Started</h2>
+        <p>
+            Start by exploring the available API endpoints. You can find detailed documentation
+            for each endpoint in our <a href="/docs">API documentation</a>.
+        </p>
+        <p>
+            Feel free to experiment with different API requests using tools like <a href="https://www.postman.com/"
+                                                                                    target="_blank">Postman</a>
+            or directly through your favorite programming language.
+        </p>
+    </div>
+</section>
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            Made with ❤️ by
+            <a href="https://samaddy.github.io">SamAddy</a>.
+        </p>
+    </div>
+</footer>
 </body>
 </html>
