@@ -54,6 +54,14 @@ jobs:
       - name: Display Image Digest
         run: echo ${{ steps.docker_build.outputs.digest }}
 
+      - name: Check Images present
+        run: docker images
+
+      - name: Tag and Push Docker Image to ACR
+        run: |
+          docker tag ${{ env.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }} ${{ env.ACR_LOGIN_SERVER }}/${{ env.DOCKER_IMAGE_NAME }}
+          docker push ${{ env.ACR_LOGIN_SERVER }}/${{ env.DOCKER_IMAGE_NAME }}
+
       - name: Azure login
         uses: azure/login@v2
         with:
@@ -66,11 +74,3 @@ jobs:
           azcliversion: latest
           inlineScript: |
             az account show
-
-      - name: Check Images present
-        run: docker images
-
-      - name: Tag and Push Docker Image to ACR
-        run: |
-          docker tag ${{ env.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }} ${{ env.ACR_LOGIN_SERVER }}/${{ env.DOCKER_IMAGE_NAME }}
-          docker push ${{ env.ACR_LOGIN_SERVER }}/${{ env.DOCKER_IMAGE_NAME }}
