@@ -15,6 +15,7 @@ jobs:
     env:
       DOCKER_IMAGE_NAME: 'playground:latest'
       ACR_LOGIN_SERVER: 'samaddyplayground.azurecr.io'
+      DOCKER_HUB_USERNAME: 'samaddy'
 
     steps:
       - name: Checkout Repository
@@ -44,7 +45,7 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}
+          tags: ${{ env.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
@@ -65,5 +66,5 @@ jobs:
 
       - name: Tag and Push Docker Image to ACR
         run: |
-          docker tag ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }} ${{ env.ACR_LOGIN_SERVER }}/${{ env.DOCKER_IMAGE_NAME }}
+          docker tag ${{ env.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }} ${{ env.ACR_LOGIN_SERVER }}/${{ env.DOCKER_IMAGE_NAME }}
           docker push ${{ env.ACR_LOGIN_SERVER }}/${{ env.DOCKER_IMAGE_NAME }}
