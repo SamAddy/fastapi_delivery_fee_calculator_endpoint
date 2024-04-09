@@ -1,9 +1,11 @@
-name: Playground workflow
+name: Playground CI/CD
 
 on:
   push:
     branches:
       - master
+
+  workflow_dispatch:
 
 permissions:
   id-token: write
@@ -56,6 +58,7 @@ jobs:
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
 
       - name: Azure CLI script
         uses: azure/CLI@v1
