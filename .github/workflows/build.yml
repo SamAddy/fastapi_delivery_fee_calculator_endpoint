@@ -1,4 +1,4 @@
-name: Playground workflow
+name: Playground
 
 on:
   push:
