@@ -15,7 +15,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     env:
-      DOCKER_IMAGE_NAME: 'playground:latest'
+      DOCKER_IMAGE_NAME: 'playground-fastapi:latest'
       ACR_LOGIN_SERVER: 'samaddyplayground.azurecr.io'
       DOCKER_HUB_USERNAME: 'samaddy'
 
