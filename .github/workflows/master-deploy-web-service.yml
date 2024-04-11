@@ -2,7 +2,7 @@ name: Deployment Workflow
 
 on:
   workflow_run:
-    workflows: [ "test-master-build" ]
+    workflows: [ 'test-master-build' ]
     types:
       - completed
 
