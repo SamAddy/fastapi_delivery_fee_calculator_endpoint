@@ -74,8 +74,13 @@ jobs:
           username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
           password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
 
-      - name: Tag and Push Docker Image to ACR
-        run: |
-          docker pull ${{ env.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}
-          docker tag ${{ env.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }} ${{ env.ACR_LOGIN_SERVER }}/${{ env.DOCKER_IMAGE_NAME }}
-          docker push ${{ env.ACR_LOGIN_SERVER }}/${{ env.DOCKER_IMAGE_NAME }}
+#      - name: Tag and Push Docker Image to ACR
+#        run: |
+#          docker pull ${{ env.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}
+#          docker tag ${{ env.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }} ${{ env.ACR_LOGIN_SERVER }}/${{ env.DOCKER_IMAGE_NAME }}
+#          docker push ${{ env.ACR_LOGIN_SERVER }}/${{ env.DOCKER_IMAGE_NAME }}
+#
+#      - name: Deploy to Azure App Service
+#        run: |
+#          az webapp config container set --name ${{ env.WEB_APP_NAME }} --resource-group your-resource-group-name --docker-custom-image-name ${{ env.ACR_LOGIN_SERVER }}/${{ env.DOCKER_IMAGE_NAME }}
+#          az webapp restart --name ${{ env.WEB_APP_NAME }} --resource-group your-resource-group-name
