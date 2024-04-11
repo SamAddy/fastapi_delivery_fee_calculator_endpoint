@@ -67,7 +67,7 @@ jobs:
           inlineScript: |
             az account show
 
-      - uses: azure/docker-login@v2
+      - uses: azure/docker-login@v1
         with:
           login-server: ${{ env.ACR_LOGIN_SERVER }}
           username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
