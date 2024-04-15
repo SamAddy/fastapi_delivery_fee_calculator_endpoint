@@ -44,7 +44,7 @@ jobs:
       - name: Tag and Push Docker Image to ACR
         run: |
           docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}
-          docker tag ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }} ${{ env.ACR_LOGIN_SERVER }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ github.sha }}
+          docker tag ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }} ${{ env.ACR_LOGIN_SERVER }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}
           docker push ${{ env.ACR_LOGIN_SERVER }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}
 
       - name: Deploy Docker Image to Azure App Service
