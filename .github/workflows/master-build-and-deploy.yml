@@ -1,4 +1,4 @@
-name: Playground CI/CD
+name: Playground CI
 
 on:
   push:
@@ -15,8 +15,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     env:
-      DOCKER_IMAGE_NAME: 'playground-fastapi:latest'
-      ACR_LOGIN_SERVER: 'samaddyplayground.azurecr.io'
+      DOCKER_IMAGE_NAME: 'playground-fastapi'
       DOCKER_HUB_USERNAME: 'samaddy'
 
     steps:
@@ -26,7 +25,7 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
-          username: ${{ env.DOCKER_HUB_USERNAME }}
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
       - name: Set up Docker Buildx
@@ -47,40 +46,6 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ env.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}
+          tags: ${{ env.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
-
-      - name: Display Image Digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
-
-      - name: Azure login
-        uses: azure/login@v2
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          enable-AzPSSession: true
-
-      - name: Azure CLI script
-        uses: azure/CLI@v2
-        with:
-          azcliversion: latest
-          inlineScript: |
-            az account show
-
-      - name: Login to Azure Container Registry
-        uses: azure/docker-login@v2
-        with:
-          login-server: ${{ env.ACR_LOGIN_SERVER }}
-          username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
-          password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
-
-#      - name: Tag and Push Docker Image to ACR
-#        run: |
-#          docker pull ${{ env.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}
-#          docker tag ${{ env.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }} ${{ env.ACR_LOGIN_SERVER }}/${{ env.DOCKER_IMAGE_NAME }}
-#          docker push ${{ env.ACR_LOGIN_SERVER }}/${{ env.DOCKER_IMAGE_NAME }}
-#
-#      - name: Deploy to Azure App Service
-#        run: |
-#          az webapp config container set --name ${{ env.WEB_APP_NAME }} --resource-group your-resource-group-name --docker-custom-image-name ${{ env.ACR_LOGIN_SERVER }}/${{ env.DOCKER_IMAGE_NAME }}
-#          az webapp restart --name ${{ env.WEB_APP_NAME }} --resource-group your-resource-group-name

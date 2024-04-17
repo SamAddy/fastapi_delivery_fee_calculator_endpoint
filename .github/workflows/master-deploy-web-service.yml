@@ -2,7 +2,7 @@ name: Deployment Workflow
 
 on:
   workflow_run:
-    workflows: [ 'Build and Deploy Docker Image' ]
+    workflows: [ 'Playground CI' ]
     types:
       - completed
 
