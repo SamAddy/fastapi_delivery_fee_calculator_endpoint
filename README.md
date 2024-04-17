@@ -1,4 +1,4 @@
-[![Playground](https://github.com/SamAddy/fastapi_delivery_fee_calculator_endpoint/actions/workflows/build.yml/badge.svg)](https://github.com/SamAddy/fastapi_delivery_fee_calculator_endpoint/actions/workflows/build.yml)
+[![Playground CI](https://github.com/SamAddy/fastapi_delivery_fee_calculator_endpoint/actions/workflows/master-build-and-deploy.yml/badge.svg)](https://github.com/SamAddy/fastapi_delivery_fee_calculator_endpoint/actions/workflows/master-build-and-deploy.yml)
 
 # Delivery Fee Calculator API
 
