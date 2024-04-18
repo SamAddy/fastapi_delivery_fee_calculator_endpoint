@@ -14,6 +14,7 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment: ${{ vars.ENVIRONMENT_STAGE }}
     #    env:
     #      DOCKER_IMAGE_NAME: 'playground-fastapi'
     #      DOCKER_HUB_USERNAME: 'samaddy'
