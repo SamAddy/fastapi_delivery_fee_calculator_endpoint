@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DOCKER_IMAGE_NAME: ${{ vars.DOCKER_IMAGE_NAME }}
-      DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+      DOCKER_HUB_USERNAME: ${{ vars.DOCKER_HUB_USERNAME }}
 
     steps:
       - name: Checkout Repository
