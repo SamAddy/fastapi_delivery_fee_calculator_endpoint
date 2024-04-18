@@ -18,8 +18,8 @@ jobs:
     env:
       ACR_LOGIN_SERVER: ${{ vars.ACR_LOGIN_SERVER }}
       DOCKER_IMAGE_NAME: ${{ vars.DOCKER_IMAGE_NAME }}
-      WEB_APP_NAME: ${{ WEB_APP_NAME }}
-      RESOURCE_GROUP_NAME: ${{ RESOURCE_GROUP_NAME }}
+      WEB_APP_NAME: ${{ vars.WEB_APP_NAME }}
+      RESOURCE_GROUP_NAME: ${{ vars.RESOURCE_GROUP_NAME }}
 
     steps:
       - name: Azure login
