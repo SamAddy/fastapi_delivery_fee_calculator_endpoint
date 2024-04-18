@@ -1,4 +1,4 @@
-name: Deployment Workflow
+name: Playground CD
 
 on:
   workflow_run:
@@ -14,11 +14,12 @@ jobs:
   deploy:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
+    environment: ${{ vars.ENVIRONMENT_STAGE }}
     env:
-      ACR_LOGIN_SERVER: 'samaddyplayground.azurecr.io'
-      DOCKER_IMAGE_NAME: 'playground-fastapi'
-      WEB_APP_NAME: 'samaddyplayground'
-      RESOURCE_GROUP_NAME: 'web-apps-rg'
+      ACR_LOGIN_SERVER: ${{ vars.ACR_LOGIN_SERVER }}
+      DOCKER_IMAGE_NAME: ${{ vars.DOCKER_IMAGE_NAME }}
+      WEB_APP_NAME: ${{ WEB_APP_NAME }}
+      RESOURCE_GROUP_NAME: ${{ RESOURCE_GROUP_NAME }}
 
     steps:
       - name: Azure login
