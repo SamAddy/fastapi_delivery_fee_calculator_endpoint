@@ -14,9 +14,9 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    env:
-      DOCKER_IMAGE_NAME: 'playground-fastapi'
-      DOCKER_HUB_USERNAME: 'samaddy'
+    #    env:
+    #      DOCKER_IMAGE_NAME: 'playground-fastapi'
+    #      DOCKER_HUB_USERNAME: 'samaddy'
 
     steps:
       - name: Checkout Repository
