@@ -14,10 +14,9 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
-    #    env:
-    #      DOCKER_IMAGE_NAME: 'playground-fastapi'
-    #      DOCKER_HUB_USERNAME: 'samaddy'
+    env:
+      DOCKER_IMAGE_NAME: ${{ vars.DOCKER_IMAGE_NAME }}
+      DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
 
     steps:
       - name: Checkout Repository
@@ -47,6 +46,6 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ vars.DOCKER_HUB_USERNAME }}/${{ vars.DOCKER_IMAGE_NAME }}:${{ github.sha }}
+          tags: ${{ env.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
