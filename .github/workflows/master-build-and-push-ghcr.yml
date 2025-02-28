@@ -1,13 +1,17 @@
 name: Build and Push to GHCR
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - master
+
+  workflow_dispatch:
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    env:
+      DOCKER_IMAGE_NAME: 'playground-fastapi'
 
     steps:
       - name: Checkout Code
@@ -18,8 +22,8 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/invoiceapp:latest .
+          docker build -t ghcr.io/${{ github.repository }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }} .
 
       - name: Push to GitHub Container Registry
         run: |
-          docker push ghcr.io/${{ github.repository }}/invoiceapp:latest
+          docker push ghcr.io/${{ github.repository }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}
