@@ -1,11 +1,11 @@
 name: Playground CI
 
 on:
-  # push:
-  #   branches:
-  #     - master
+  push:
+    branches:
+      - master
 
-  # workflow_dispatch:
+  workflow_dispatch:
 
 permissions:
   id-token: write
