@@ -12,8 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DOCKER_IMAGE_NAME: 'playground-fastapi'
-      REPO_NAME: ${{ github.repository }}
-      LOWERCASE_REPO: ${{ github.repository | toLowerCase() }}
 
     steps:
       - name: Checkout Code
@@ -24,8 +22,10 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t ghcr.io/${{ env.LOWERCASE_REPO }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }} .
+          LOWERCASE_REPO=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          docker build -t ghcr.io/$LOWERCASE_REPO/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }} .
 
       - name: Push to GitHub Container Registry
         run: |
-          docker push ghcr.io/${{ env.LOWERCASE_REPO }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}
+          LOWERCASE_REPO=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          docker push ghcr.io/$LOWERCASE_REPO/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}
